@@ -8,7 +8,7 @@ resource "aws_vpc" "tf-vpc" {
   }
 }
 resource "aws_subnet" "subnets" {
-  count = "${length(var.azs)}"
+  count = "${length(data.aws_availability_zones.azs.names)}"
 
 vpc_id     = "${aws_vpc.tf-vpc.id}"
   cidr_block = "${element(var.subnet_cidr,count.index)}"
